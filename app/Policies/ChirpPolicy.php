@@ -46,6 +46,18 @@ class ChirpPolicy
     }
 
     /**
+     * Determine whether the user can delete the model.
+     *
+     * @param User $user
+     * @param Chirp $chirp
+     * @return Response|bool
+     */
+    public function delete(User $user, Chirp $chirp)
+    {
+        return $this->update($user, $chirp);
+    }
+
+    /**
      * Determine whether the user can update the model.
      *
      * @param User $user
@@ -55,18 +67,6 @@ class ChirpPolicy
     public function update(User $user, Chirp $chirp)
     {
         return $chirp->user()->is($user);
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param User $user
-     * @param Chirp $chirp
-     * @return Response|bool
-     */
-    public function delete(User $user, Chirp $chirp)
-    {
-        //
     }
 
     /**
